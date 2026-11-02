@@ -1,0 +1,26 @@
+/* восстановлено из production CSS (хэш 290ir) */
+.container {
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px;
+}
+
+.container > h1 {
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.container > li {
+  font-size: 14px;
+  font-style: italic;
+  padding-left: 20px;
+}
+
+.container > p {
+  font-size: 12px;
+  font-style: italic;
+}

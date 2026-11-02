@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#006858" />
+    <meta
+      name="uysot app"
+      content="Uysot quruvchi korxonalar uchun yaratilgan ishlarni avtomatlashtirivchi platforma"
+    />
+    <link rel="apple-touch-icon" href="/uysot192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Har bir yuklanishda urib o'tiladigan cross-origin hostlar. Ularsiz DNS+TCP+TLS
+         qo'l siqishi faqat entry JS bajarilgach boshlanadi: tarjimalar (i18n init
+         tugamaguncha ilova <Loading/> ko'rsatadi) va birinchi API so'rovi shuncha
+         kechikadi. Manzillar env'dan olinadi, ya'ni muhitga qarab o'zgaradi. -->
+    <link rel="preconnect" href="https://lang.aws.softex.uz" crossorigin />
+    <link rel="preconnect" href="https://service.app.dev.uysot.uz" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600&family=Roboto:wght@400;500;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600&family=Roboto:wght@400;500;700&display=swap"
+      media="print"
+      onload="this.onload=null;this.media='all'"
+    />
+    <title>Uysot</title>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/SFUIText-Regular.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/SFUIText-Medium.woff2" crossorigin />
+    
+    <style>body,html{background:#fff;margin:0;min-height:100%}html.dark,html.dark body{background:#1a2129}.boot-loader{background:#fff;min-height:100vh}html.dark .boot-loader{background:#1a2129}.boot-cube-wrap{height:100px;left:calc((100% - var(--ai-assistant-width, 0px))/2);margin-left:-50px;margin-top:-50px;position:fixed;text-align:center;top:50%;width:100px}.boot-cube-wrap:after{animation:boot-shadow .5s ease infinite alternate;background:#0000001a;border-radius:100%;bottom:-20px;content:"";filter:blur(2px);height:6px;left:0;margin:auto;position:absolute;right:0;width:90px;z-index:1}.boot-cube{display:inline-block;font-size:0;height:50px;transform:rotate(45deg);width:50px}.boot-cube span{display:inline-block;height:25px;position:relative;transform:scale(1.1);width:25px}.boot-cube span:before{animation:boot-fold 2.5s linear infinite both;background:#00a389;content:"";display:block;height:25px;left:0;position:absolute;top:0;transform-origin:100% 100%;width:25px}.boot-cube .l2{transform:rotate(90deg) scale(1.1)}.boot-cube .l2:before{animation-delay:.3s;background:#00957d}.boot-cube .l3{transform:rotate(270deg) scale(1.1)}.boot-cube .l3:before{animation-delay:.9s;background:#00957d}.boot-cube .l4{transform:rotate(180deg) scale(1.1)}.boot-cube .l4:before{animation-delay:.6s;background:#008772}.boot-label{animation:boot-text .5s ease infinite alternate;color:#00a389;display:block;font-size:12px;letter-spacing:.1em;position:relative;top:25px;z-index:2}@keyframes boot-fold{0%,10%{opacity:0;transform:perspective(140px) rotateX(-180deg)}25%,75%{opacity:1;transform:perspective(140px) rotateX(0deg)}90%,to{opacity:0;transform:perspective(140px) rotateY(180deg)}}@keyframes boot-text{to{top:35px}}@keyframes boot-shadow{to{bottom:-18px;width:100px}}#auth-bg{height:100vh;left:0;object-fit:cover;opacity:1;position:fixed;top:0;width:100%;z-index:0}#root{position:relative;z-index:1}html.dark #auth-bg{filter:brightness(.55) saturate(.85)}html[data-auth-bg=off] #auth-bg{display:none}html.dark[data-auth-bg=on] .boot-loader,html[data-auth-bg=on] .boot-loader{background:#0000}</style>
+    <script>
+      (function () {
+        try {
+          var mode = localStorage.getItem('theme-mode') || 'system';
+          if (mode.charAt(0) === '"') {
+            try {
+              mode = JSON.parse(mode);
+            } catch (e) {}
+          }
+          var dark =
+            mode === 'dark' ||
+            (mode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          var root = document.documentElement;
+          if (dark) root.classList.add('dark');
+          else root.classList.remove('dark');
+          root.dataset.theme = dark ? 'dark' : 'light';
+          root.style.colorScheme = dark ? 'dark' : 'light';
+          root.style.setProperty('--ai-assistant-width', '0px');
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', dark ? '#14191f' : '#006858');
+        } catch (e) {}
+      })();
+    </script>
+    <script>
+      /* LCP rasmni faqat login (`/` va Telegram "Davom etish" sahifasi
+         `/login/telegram` — u ham Login komponenti) da bo'yaymiz. /restore-password va
+         /change-password fonni o'zlari <img> bilan chizadi — bu yerda ham
+         ko'rsatsak, ikkita fon bo'lib qolardi. Boshqa marshrutlar
+         (/privacy-policy, /qr/*) ayni open shell dan xizmat qiladi. */
+      (function () {
+        var p = location.pathname.replace(/\/$/, '') || '/';
+        if (p !== '/' && p !== '/login/telegram') {
+          document.documentElement.dataset.authBg = 'off';
+          return;
+        }
+        /* `on` — CSS uchun signal: `#root` va boot skeleti shaffof bo'lishi
+           kerak, aks holda ular `#auth-bg` ni (z-index 0) yopib qo'yadi. */
+        document.documentElement.dataset.authBg = 'on';
+        var l = document.createElement('link');
+        l.rel = 'preload';
+        l.as = 'image';
+        l.type = 'image/avif';
+        l.setAttribute('fetchpriority', 'high');
+        l.setAttribute('imagesrcset', '/img/login-bg-1280.v1.avif 1280w, /img/login-bg-1920.v1.avif 1920w');
+        l.setAttribute('imagesizes', '100vw');
+        l.href = '/img/login-bg-1920.v1.avif';
+        document.head.appendChild(l);
+      })();
+    </script>
+    <script>
+      /* Deploy-skew to'ri. __vdpl cookie (middleware.js) /assets/* ni HTML bergan
+         deployga bog'laydi; cookie yo'q/eskirgan bo'lsa entry chunk 404 = oq ekran.
+         Bu inline skript entry JS umuman yuklanmagan holatni qutqaradi —
+         src/bootstrap/chunk-recovery.ts esa lazy route chunklarini. */
+      (function () {
+        var KEY = 'uysot:chunk-recovery';
+        var WINDOW_MS = 60000;
+        var MAX = 2;
+        var fired = false;
+
+        function read() {
+          try {
+            var raw = sessionStorage.getItem(KEY);
+            if (!raw) return { at: 0, count: 0 };
+            var g = JSON.parse(raw);
+            if (Date.now() - g.at > WINDOW_MS) return { at: 0, count: 0 };
+            return g;
+          } catch (e) {
+            return { at: 0, count: 0 };
+          }
+        }
+
+        /* Tarmoq yo'q bo'lsa reload ham chunkni ololmaydi (shell SW/HTTP cache dan
+           ko'tariladi, lazy chunk yana yiqiladi) va MAX urinish behuda yonib ketadi.
+           Shuning uchun avval tarmoq borligini tekshiramiz, yo'q bo'lsa qaytishini
+           kutamiz. navigator.onLine ishonchsiz (Safari uyqudan keyin kech
+           yangilaydi) — shuning uchun HEAD so'rov bilan tekshiramiz. */
+        function whenOnline(cb) {
+          var done = false;
+          function finish() {
+            if (done) return;
+            done = true;
+            window.removeEventListener('online', check);
+            cb();
+          }
+          var probing = false;
+          var retry = 0;
+          function check() {
+            if (done || probing) return;
+            clearTimeout(retry);
+            if (!window.fetch) return finish();
+            /* onLine === false ga ham ishonmaymiz — ba'zi VPN/virtual adapterlarda
+               noto'g'ri false beradi va reload hech qachon bo'lmay qolardi.
+               Oflaynda fetch baribir darhol yiqiladi. Osilib qolgan so'rov
+               (yarim ishlaydigan tarmoq) 5 s dan keyin bekor qilinadi. */
+            probing = true;
+            var ctrl = window.AbortController ? new AbortController() : null;
+            var timer = ctrl
+              ? setTimeout(function () {
+                  ctrl.abort();
+                }, 5000)
+              : 0;
+            fetch(window.location.href, {
+              method: 'HEAD',
+              cache: 'no-store',
+              signal: ctrl ? ctrl.signal : undefined
+            }).then(
+              function () {
+                clearTimeout(timer);
+                finish();
+              },
+              function () {
+                clearTimeout(timer);
+                probing = false;
+                retry = setTimeout(check, 5000);
+              }
+            );
+          }
+          window.addEventListener('online', check);
+          check();
+        }
+
+        function reloadNow() {
+          var g = read();
+          try {
+            sessionStorage.setItem(KEY, JSON.stringify({ at: Date.now(), count: g.count + 1, reason: fired }));
+          } catch (e) {}
+          if (g.count === 0) {
+            window.location.reload();
+            return;
+          }
+          /* 2-urinish: PWA precache eski HTML/asset bermasin. */
+          var done = false;
+          var go = function () {
+            if (!done) {
+              done = true;
+              window.location.reload();
+            }
+          };
+          setTimeout(go, 1500);
+          try {
+            if (window.caches && caches.keys) {
+              caches
+                .keys()
+                .then(function (keys) {
+                  return Promise.all(
+                    keys
+                      .filter(function (k) {
+                        return /workbox|precache/i.test(k);
+                      })
+                      .map(function (k) {
+                        return caches.delete(k);
+                      })
+                  );
+                })
+                .then(go, go);
+            } else {
+              go();
+            }
+          } catch (e) {
+            go();
+          }
+        }
+
+        function recover(reason) {
+          if (fired) return true;
+          if (read().count >= MAX) return false;
+          fired = reason || true;
+          whenOnline(reloadNow);
+          return true;
+        }
+
+        window.__uysotChunkRecover = recover;
+
+        window.addEventListener(
+          'error',
+          function (event) {
+            var t = event.target;
+            if (!t || t === window || !t.tagName) return;
+            if (t.tagName !== 'SCRIPT' && t.tagName !== 'LINK') return;
+            var url = t.src || t.href || '';
+            if (!/\/assets\/[^/]+\.(js|mjs|css)(\?|$)/.test(url)) return;
+            recover('asset-404');
+          },
+          true
+        );
+      })();
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+    </head>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <!-- LCP element. `#root` dan TASHQARIDA: createRoot().render() `#root`
+         bolalarini tozalaydi, ichida bo'lsa mount paytida yo'q bo'lardi. -->
+    <picture>
+      <source
+        type="image/avif"
+        sizes="100vw"
+        srcset="/img/login-bg-1280.v1.avif 1280w, /img/login-bg-1920.v1.avif 1920w"
+      />
+      <source
+        type="image/webp"
+        sizes="100vw"
+        srcset="/img/login-bg-1280.v1.webp 1280w, /img/login-bg-1920.v1.webp 1920w"
+      />
+      <img
+        id="auth-bg"
+        src="/img/login-bg-1920.v1.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </picture>
+    <script>
+      /* Login bo'lmagan marshrutlarda elementni darhol olib tashlaymiz:
+         `display:none` rasmni baribir yuklaydi, remove() esa so'rovni bekor qiladi. */
+      (function () {
+        if (document.documentElement.dataset.authBg === 'off') {
+          var el = document.getElementById('auth-bg');
+          if (el && el.parentNode) el.parentNode.remove();
+        }
+      })();
+    </script>
+
+    <div id="root">
+      <div
+        class="boot-loader"
+        aria-busy="true"
+        aria-label="Uysot"
+      >
+        <div class="boot-cube-wrap">
+          <div class="boot-cube">
+            <span class="l1"></span>
+            <span class="l2"></span>
+            <span class="l3"></span>
+            <span class="l4"></span>
+          </div>
+          <span class="boot-label">Uysot</span>
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+      var global = window;
+    </script>
+
+    <!-- Google tag (gtag.js) — G-9LBLLC6CL6 from .env at build/dev time -->
+    <script>
+      const user = JSON.parse(localStorage.getItem('user-data') || '{}');
+
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'G-9LBLLC6CL6', { debug_mode: true });
+
+      // gtag('event', 'customer_feedback_opened', {
+      //   company_id: user?.companyId || 'Mavjud emas',
+      //   user_id: user?.id || 'Mavjud emas'
+      // });
+
+      // gtag('event', 'customer_feedback_submitted', {
+      //   company_id: user?.companyId || 'Mavjud emas',
+      //   user_id: user?.id || 'Mavjud emas'
+      // });
+    </script>
+    <script>
+      /* GTM ~168 KB va TBT'ga ~120 ms qo'shadi. dataLayer/gtag shim'i sinxron
+         qoladi, shuning uchun event'lar navbatga tushaveradi va yo'qolmaydi.
+         Skriptning o'zi birinchi foydalanuvchi harakatida yoki 10 s dan keyin
+         yuklanadi — real tashrifchi baribir hisobga olinadi, lekin skript
+         birinchi yuklanish oynasida main thread'ni bloklamaydi.
+         10 s zaxira `load` hodisasidan KEYIN sanaladi (sekin CPU'da ilova 10 s dan
+         uzoq yuklanadi — avval timer yuklanish o'rtasida otilardi), skript esa
+         idle paytda qo'shiladi, foydalanuvchi bosgan ish bilan raqobat qilmaydi. */
+      (function () {
+        var done = false;
+        var inject = function () {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-9LBLLC6CL6';
+          document.head.appendChild(s);
+        };
+        var load = function () {
+          if (done) return;
+          done = true;
+          events.forEach(function (e) {
+            window.removeEventListener(e, load);
+          });
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(inject, { timeout: 3000 });
+          } else {
+            setTimeout(inject, 300);
+          }
+        };
+        var events = ['pointerdown', 'keydown', 'scroll', 'touchstart'];
+        events.forEach(function (e) {
+          window.addEventListener(e, load, { once: true, passive: true });
+        });
+        var startFallback = function () {
+          setTimeout(load, 10000);
+        };
+        if (document.readyState === 'complete') {
+          startFallback();
+        } else {
+          window.addEventListener('load', startFallback, { once: true });
+        }
+      })();
+    </script>
+  </body>
+</html>

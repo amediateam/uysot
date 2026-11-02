@@ -1,0 +1,307 @@
+// [restore] Путь файла восстановлен точно: data-sentry-source-file в production-бандле.
+// [restore] Источник: index-B0UwuSD7 (1)
+import * as A from "react/jsx-runtime";
+export const y$ = () => (
+  <svg
+    width="144"
+    height="126"
+    viewBox="0 0 144 126"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g clipPath="url(#clip0_45543_103390)">
+      <line
+        x1="7.61994"
+        y1="-2.90625"
+        x2="7.61994"
+        y2="129.177"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <line
+        x1="20.6829"
+        y1="-2.90625"
+        x2="20.6829"
+        y2="129.177"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <line
+        x1="33.7462"
+        y1="-2.90625"
+        x2="33.7462"
+        y2="129.177"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <line
+        x1="46.8094"
+        y1="-2.90625"
+        x2="46.8094"
+        y2="129.177"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <line
+        x1="59.8724"
+        y1="-2.90625"
+        x2="59.8724"
+        y2="129.177"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <line
+        x1="72.9356"
+        y1="-2.90625"
+        x2="72.9356"
+        y2="129.177"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <line
+        x1="85.9986"
+        y1="-2.90625"
+        x2="85.9986"
+        y2="129.177"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <line
+        x1="99.0618"
+        y1="-2.90625"
+        x2="99.0618"
+        y2="129.177"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <line
+        x1="112.125"
+        y1="-2.90625"
+        x2="112.125"
+        y2="129.177"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <line
+        x1="125.188"
+        y1="-2.90625"
+        x2="125.188"
+        y2="129.177"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <line
+        x1="138.251"
+        y1="-2.90625"
+        x2="138.251"
+        y2="129.177"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <line
+        x1="148.433"
+        y1="5.0484"
+        x2="3.3291"
+        y2="3.98596"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <line
+        x1="148.335"
+        y1="18.3394"
+        x2="3.23169"
+        y2="17.277"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <line
+        x1="148.238"
+        y1="31.6324"
+        x2="3.13452"
+        y2="30.5699"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <line
+        x1="148.141"
+        y1="44.9234"
+        x2="3.03711"
+        y2="43.861"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <line
+        x1="148.043"
+        y1="58.2164"
+        x2="2.9397"
+        y2="57.1539"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <line
+        x1="147.946"
+        y1="71.5074"
+        x2="2.84253"
+        y2="70.4449"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <line
+        x1="147.849"
+        y1="84.8004"
+        x2="2.74512"
+        y2="83.7379"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <line
+        x1="147.752"
+        y1="98.0914"
+        x2="2.64795"
+        y2="97.0289"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <line
+        x1="147.654"
+        y1="111.384"
+        x2="2.55054"
+        y2="110.322"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <line
+        x1="147.557"
+        y1="124.675"
+        x2="2.45312"
+        y2="123.613"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <rect
+        x="66.0789"
+        y="37.0465"
+        width="37.0122"
+        height="37.0122"
+        rx="9.79735"
+        transform="rotate(30 66.0789 37.0465)"
+        fill="var(--color-surface)"
+      />
+      <rect
+        x="66.0789"
+        y="37.0465"
+        width="37.0122"
+        height="37.0122"
+        rx="9.79735"
+        transform="rotate(30 66.0789 37.0465)"
+        stroke="var(--color-border)"
+        strokeWidth="0.725729"
+      />
+      <g filter="url(#filter0_i_45543_103390)">
+        <rect
+          x="47.803"
+          y="46.6719"
+          width="38.5146"
+          height="38.5146"
+          rx="10.1602"
+          fill="var(--color-surface)"
+        />
+        <rect
+          x="48.1658"
+          y="47.0347"
+          width="37.7889"
+          height="37.7889"
+          rx="9.79735"
+          stroke="var(--color-border)"
+          strokeWidth="0.725729"
+        />
+        <path
+          d="M72.2803 55.9297H64.0204C63.6204 55.9297 63.2403 56.0697 62.9303 56.3097L60.7403 58.0597C59.8603 58.7597 59.8603 60.0897 60.7403 60.7897L62.9303 62.5397C63.2403 62.7897 63.6304 62.9197 64.0204 62.9197H72.2803C73.2503 62.9197 74.0303 62.1397 74.0303 61.1697V57.6697C74.0303 56.7097 73.2503 55.9297 72.2803 55.9297Z"
+          stroke="var(--color-primary)"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M61.8604 65.9297H70.1204C70.5204 65.9297 70.9004 66.0697 71.2104 66.3097L73.4004 68.0597C74.2804 68.7597 74.2804 70.0897 73.4004 70.7897L71.2104 72.5397C70.9004 72.7897 70.5104 72.9197 70.1204 72.9197H61.8604C60.8904 72.9197 60.1104 72.1397 60.1104 71.1697V67.6697C60.1104 66.7097 60.8904 65.9297 61.8604 65.9297Z"
+          stroke="var(--color-primary)"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          opacity="0.4"
+          d="M67.0603 65.9297V62.9297"
+          stroke="var(--color-primary)"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <g opacity="0.4">
+          <path
+            opacity="0.4"
+            d="M67.0603 75.9297V72.9297"
+            stroke="var(--color-primary)"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            opacity="0.4"
+            d="M64.0603 75.9297H70.0603"
+            stroke="var(--color-primary)"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </g>
+      </g>
+      <ellipse
+        cx="72.2115"
+        cy="53.7331"
+        rx="106.212"
+        ry="105.733"
+        fill="url(#paint0_radial_45543_103390)"
+      />
+    </g>
+    <defs>
+      <filter
+        id="filter0_i_45543_103390"
+        x="47.803"
+        y="44.5673"
+        width="38.5146"
+        height="40.6183"
+        filterUnits="userSpaceOnUse"
+        colorInterpolationFilters="sRGB"
+      >
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+        <feColorMatrix
+          in="SourceAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          result="hardAlpha"
+        />
+        <feOffset dy="-2.90292" />
+        <feGaussianBlur stdDeviation="1.05231" />
+        <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0" />
+        <feBlend mode="normal" in2="shape" result="effect1_innerShadow_45543_103390" />
+      </filter>
+      <radialGradient
+        id="paint0_radial_45543_103390"
+        cx="0"
+        cy="0"
+        r="1"
+        gradientUnits="userSpaceOnUse"
+        gradientTransform="translate(72.2115 53.7331) rotate(90) scale(105.733 106.212)"
+      >
+        <stop stopColor="var(--color-surface)" stopOpacity="0" />
+        <stop offset="0.73" stopColor="var(--color-surface)" />
+      </radialGradient>
+      <clipPath id="clip0_45543_103390">
+        <rect width="144" height="125.169" fill="var(--color-surface)" />
+      </clipPath>
+    </defs>
+  </svg>
+);

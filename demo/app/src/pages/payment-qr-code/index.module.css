@@ -1,0 +1,149 @@
+/* восстановлено из production CSS (хэш x07ds) */
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  .container {
+    height: auto;
+    justify-content: flex-start;
+    padding: 118px 28px;
+  }
+}
+
+.body {
+  background: var(--color-surface, #fff);
+  border-radius: 16px;
+  display: grid;
+  gap: 16px 100px;
+  padding: 35px 75px;
+}
+
+@media (max-width: 700px) {
+  .body {
+    padding: 49px 35px;
+  }
+}
+
+.body > h1 {
+  align-items: center;
+  color: #000;
+  display: flex;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  gap: 19px;
+  grid-column: 1/3;
+  justify-content: center;
+  line-height: normal;
+  margin-bottom: 39px;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .body > h1 {
+    font-size: 36px;
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 700px) {
+  .body > h1 > svg {
+    height: 38px;
+    width: 38px;
+  }
+}
+
+.body > div > h3 {
+  color: #5e5e5e;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.body > div > h2 {
+  color: #000;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.footer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 35px;
+}
+
+.footer a,
+.footer > p {
+  color: #5e5e5e;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  gap: 4px;
+  justify-content: center;
+  line-height: normal;
+}
+
+.footer > a,
+.lang {
+  text-decoration-line: underline;
+}
+
+.lang {
+  align-items: center;
+  color: #2f2f2f;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  gap: 16px;
+  justify-content: center;
+  line-height: normal;
+  margin-top: 24px;
+}
+
+.lang > img {
+  height: 24px;
+  width: 34.909px;
+}
+
+.lang_drawer {
+  align-items: flex-start;
+  background: var(--color-surface, #fff);
+  border-radius: 8px;
+  box-shadow: 0 5px 13px #00000029;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 18px;
+  justify-content: center;
+  padding: 16px 0;
+}
+
+.lang_drawer > div {
+  align-items: center;
+  color: #2f2f2f;
+  cursor: pointer;
+  display: flex;
+  font-family: Nunito;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  gap: 16px;
+  justify-content: center;
+  line-height: normal;
+  padding: 0 16px;
+  text-decoration-line: underline;
+}

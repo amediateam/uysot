@@ -1,0 +1,4 @@
+node_modules
+dist
+# скачанная production-сборка (исходные данные для восстановления): node ../../scripts/fetch-build.mjs https://app.dev.uysot.uz/ _build
+_build/
