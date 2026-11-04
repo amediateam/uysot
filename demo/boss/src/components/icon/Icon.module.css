@@ -1,0 +1,9 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+.wrapper svg {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}

@@ -1,0 +1,7 @@
+node_modules
+dist
+# локальные значения: содержит VITE_TOLGEE_API_KEY
+.env
+.env.local
+# скачанная production-сборка: node ../../scripts/fetch-build.mjs https://boss.app.uysot.uz/auth/login _build
+_build/

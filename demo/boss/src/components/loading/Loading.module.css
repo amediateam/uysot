@@ -1,0 +1,123 @@
+.cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--white);
+}
+.cubeFolding {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  transform: rotate(45deg);
+  font-size: 0;
+}
+.cubeFolding span {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  transform: scale(1.1);
+  display: inline-block;
+}
+.cubeFolding span:before {
+  content: "";
+  background-color: #00a389;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 25px;
+  height: 25px;
+  transform-origin: 100% 100%;
+  animation: folding 2.5s infinite linear both;
+}
+.cubeFolding .leaf2 {
+  transform: rotate(90deg) scale(1.1);
+}
+.cubeFolding .leaf2:before {
+  animation-delay: 0.3s;
+  background-color: #008a74;
+}
+.cubeFolding .leaf3 {
+  transform: rotate(270deg) scale(1.1);
+}
+.cubeFolding .leaf3:before {
+  animation-delay: 0.9s;
+  background-color: #008a74;
+}
+.cubeFolding .leaf4 {
+  transform: rotate(180deg) scale(1.1);
+}
+.cubeFolding .leaf4:before {
+  animation-delay: 0.6s;
+  background-color: #00705e;
+}
+.cubeWrapper {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+}
+.cubeWrapper:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -20px;
+  margin: auto;
+  width: 90px;
+  height: 6px;
+  z-index: 1;
+  background-color: #0000001a;
+  filter: blur(2px);
+  border-radius: 100%;
+  animation: shadow 0.5s ease infinite alternate;
+}
+.cubeWrapper .loading {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  display: block;
+  color: #00a389;
+  position: relative;
+  top: 25px;
+  z-index: 2;
+  animation: text 0.5s ease infinite alternate;
+}
+@keyframes folding {
+  0%,
+  10% {
+    transform: perspective(140px) rotateX(-180deg);
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    opacity: 0;
+  }
+  25%,
+  75% {
+    transform: perspective(140px) rotateX(0);
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+    opacity: 1;
+  }
+  90%,
+  to {
+    transform: perspective(140px) rotateY(180deg);
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    opacity: 0;
+  }
+}
+@keyframes text {
+  to {
+    top: 35px;
+  }
+}
+@keyframes shadow {
+  to {
+    bottom: -18px;
+    width: 100px;
+  }
+}
