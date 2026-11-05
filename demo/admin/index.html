@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!--
+      `viewport-fit=cover` is what makes the `env(safe-area-inset-*)` values in
+      the layout resolve to anything other than 0. Without it the page is letter-
+      boxed away from the notch and the insets are all zero, so the padding that
+      keeps the topbar clear of the status bar silently does nothing.
+
+      No `maximum-scale` or `user-scalable=no`: pinch-zoom is an accessibility
+      affordance, and taking it away is never the right fix for a layout bug.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Uyim · dev panel</title>
+    <link rel="icon" type="image/jpeg" href="/uyim-logo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      // Runs before first paint so an explicit dark choice never flashes light.
+      // Only sets the attribute and color-scheme; the token values are written
+      // by applyTheme() in main.tsx. Kept in sync with STORAGE_KEYS.themeMode.
+      (function () {
+        try {
+          var stored = localStorage.getItem('uyim.theme-mode') || 'system';
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolved = stored === 'system' ? (prefersDark ? 'dark' : 'light') : stored;
+          var root = document.documentElement;
+          root.setAttribute('data-theme', resolved);
+          root.style.colorScheme = resolved;
+        } catch (error) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

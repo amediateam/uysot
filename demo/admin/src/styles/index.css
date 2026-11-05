@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+/*
+  Tailwind v4 CSS-first config (recovered from the compiled build CSS). The color
+  utilities resolve to `--app-*` custom properties that applyTheme() writes at runtime;
+  the :root / [data-theme=dark] blocks below provide the same values statically so the
+  first paint is correct before JS runs.
+*/
+@theme {
+  --color-canvas: var(--app-canvas);
+  --color-surface: var(--app-surface);
+  --color-surface-muted: var(--app-surface-muted);
+  --color-surface-hover: var(--app-surface-hover);
+  --color-border: var(--app-border);
+  --color-border-strong: var(--app-border-strong);
+  --color-row-border: var(--app-row-border);
+  --color-content: var(--app-content);
+  --color-content-secondary: var(--app-content-secondary);
+  --color-content-muted: var(--app-content-muted);
+  --color-content-placeholder: var(--app-content-placeholder);
+  --color-content-inverse: var(--app-content-inverse);
+  --color-primary: var(--app-primary);
+  --color-primary-hover: var(--app-primary-hover);
+  --color-accent: var(--app-accent);
+  --color-accent-hover: var(--app-accent-hover);
+  --color-accent-soft: var(--app-accent-soft);
+  --color-success: var(--app-success);
+  --color-success-strong: var(--app-success-strong);
+  --color-success-soft: var(--app-success-soft);
+  --color-warning: var(--app-warning);
+  --color-warning-strong: var(--app-warning-strong);
+  --color-warning-soft: var(--app-warning-soft);
+  --color-danger: var(--app-danger);
+  --color-danger-strong: var(--app-danger-strong);
+  --color-danger-soft: var(--app-danger-soft);
+  --color-progress: var(--app-progress);
+  --color-progress-strong: var(--app-progress-strong);
+  --color-progress-soft: var(--app-progress-soft);
+  --color-overlay: var(--app-overlay);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.05);
+
+  --font-sans: var(--app-font-family, "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif);
+  --font-mono: var(--app-font-mono, "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+}
+
+:root {
+  --app-canvas: #f0f0f2;
+  --app-surface: #ffffff;
+  --app-surface-muted: #f7f7f8;
+  --app-surface-hover: #fafafb;
+  --app-border: #e5e5e7;
+  --app-border-strong: #c9c9ce;
+  --app-row-border: #f0f0f2;
+  --app-content: #0b0b0c;
+  --app-content-secondary: #5a5a5f;
+  --app-content-muted: #6b6b70;
+  --app-content-placeholder: #c9c9ce;
+  --app-content-inverse: #ffffff;
+  --app-primary: #1b1b1f;
+  --app-primary-hover: #2c2c31;
+  --app-accent: #0a84ff;
+  --app-accent-hover: #0069d9;
+  --app-accent-soft: #e8f1ff;
+  --app-success: #12b76a;
+  --app-success-strong: #0e8f55;
+  --app-success-soft: #e6f7ef;
+  --app-warning: #e8833a;
+  --app-warning-strong: #a85b18;
+  --app-warning-soft: #fdf0e3;
+  --app-danger: #e5484d;
+  --app-danger-strong: #b4292d;
+  --app-danger-soft: #fdecec;
+  --app-progress: #7a5af8;
+  --app-progress-strong: #5b3fd6;
+  --app-progress-soft: #f1edfe;
+  --app-overlay: rgba(11, 11, 12, 0.45);
+}
+
+:root[data-theme="dark"] {
+  --app-canvas: #0b0b0c;
+  --app-surface: #17171a;
+  --app-surface-muted: #1f1f23;
+  --app-surface-hover: #1a1a1e;
+  --app-border: #2c2c31;
+  --app-border-strong: #3a3a3e;
+  --app-row-border: #1f1f23;
+  --app-content: #f2f2f3;
+  --app-content-secondary: #a8a8ae;
+  --app-content-muted: #94949b;
+  --app-content-placeholder: #6a6a70;
+  --app-content-inverse: #0b0b0c;
+  --app-primary: #f2f2f3;
+  --app-primary-hover: #ffffff;
+  --app-accent: #4ca5ff;
+  --app-accent-hover: #7dbeff;
+  --app-accent-soft: #16283d;
+  --app-success: #3dd68c;
+  --app-success-strong: #12b76a;
+  --app-success-soft: #10291e;
+  --app-warning: #f0a868;
+  --app-warning-strong: #e8833a;
+  --app-warning-soft: #2e2114;
+  --app-danger: #f26d71;
+  --app-danger-strong: #e5484d;
+  --app-danger-soft: #2e1618;
+  --app-progress: #9e85fa;
+  --app-progress-strong: #9e85fa;
+  --app-progress-soft: #221c3d;
+  --app-overlay: rgba(0, 0, 0, 0.65);
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    min-height: 100dvh;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-canvas);
+    color: var(--color-content);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
