@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Palette recovered from the build CSS. gray-50 / gray-900 are inferred (Untitled UI
+   scale) — the purged build CSS only emitted the used 100–800 steps. */
+:root {
+  --primary-100: #ece9fe;
+  --primary-400: #a48afb;
+  --primary-500: #875bf7;
+  --primary-800: #5720b7;
+  --gray-50: #f9fafb; /* TODO: inferred from build */
+  --gray-100: #f2f4f7;
+  --gray-200: #eaecf0;
+  --gray-400: #98a2b3;
+  --gray-500: #667085;
+  --gray-600: #475467;
+  --gray-700: #344054;
+  --gray-800: #1d2939;
+  --gray-900: #101828; /* TODO: inferred from build */
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+/* Icon wrapper (recovered from the build). */
+.icon-wrapper {
+  align-items: center;
+  display: flex;
+}
+.icon-wrapper svg {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+/* Form field rounding tweak for addon inputs (recovered from the build). */
+.field.ant-input-group-wrapper .ant-input-group-addon {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.field .ant-input {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}

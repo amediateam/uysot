@@ -15,7 +15,7 @@ Each `demo/<name>/task.md` is the full brief for one target (in Russian). The br
 | `demo/app` | https://app.dev.uysot.uz/ | Public part restored (login/SMS/Telegram, password restore, QR pages, etc.). The main app behind login (`/main/*`) is **not** restored yet |
 | `demo/boss` | https://boss.app.uysot.uz/auth/login | Fully restored (the build is small: login, forbidden page, dashboard stub) |
 | `demo/admin` | https://admin.meninguyim.uysot.uz/login | Not started, only `task.md` |
-| `demo/ads` | https://dashboard.ads.uysot.uz/ | Not started, only `task.md` |
+| `demo/ads` | https://dashboard.ads.uysot.uz/ | Fully restored (login, banner-collection list, banners table, multilingual banner create/edit form with image upload, weekly statistics chart). ~38 source files |
 | `demo/showroom` | https://showroom.app.uysot.uz/login | Not started, only `task.md` |
 
 "Restore into `/demo/<name>`" in a task means the repo-relative `demo/<name>/` directory, not a filesystem root path. Each restored project has a `RECONSTRUCTION.md` (in Russian) with the module map, the exact-vs-inferred accuracy report and run instructions. **Read it before changing that project.** `docs/` holds session logs, for example `docs/session-2026-11-02-app-restore.md`, which includes the next steps for `demo/app`.
@@ -33,6 +33,11 @@ npm run build        # also build:mock, preview, typecheck (tsc --noEmit)
 cd demo/boss && cp .env.example .env   # fill in VITE_TOLGEE_API_KEY
 npm ci
 npm run dev          # build = tsc --noEmit && vite build; also preview, typecheck
+
+# demo/ads — React 18, antd 5, TanStack Query 5, react-hook-form + zod, use-query-params, @nivo/line, Tailwind 3, strict TS
+cd demo/ads && npm install
+npm run dev          # needs the real backend (services.marketplace.uysot.uz); API base defaults in src/config
+npm run build        # tsc --noEmit && vite build; also preview, typecheck
 ```
 
 Both projects use the `@/` → `src/` alias (in `vite.config.ts` and `tsconfig.json`) and `build.sourcemap: "hidden"`, so maps stay in `dist/` and the sources can't be lost again. Dependency versions are pinned to the versions detected in each bundle, so don't bump them casually.
@@ -48,7 +53,8 @@ Both projects use the `@/` → `src/` alias (in `vite.config.ts` and `tsconfig.j
 - **Source maps:** none were found for app or boss. The servers fall back to `index.html` with HTTP 200 for any path, so a 200 on `*.map` means nothing until you check the body.
 - **Sentry** (app): the Sentry Vite plugin leaves `data-sentry-source-file` attributes in JSX. These give **exact original file paths**, so use them first when assigning code to files. The real source maps may be uploaded to Sentry; `demo/app/RECONSTRUCTION.md` has the project ID.
 - **Split builds** (app): the public shell (`apps/open.tsx`) and the authenticated app (`/assets/app-*.js`) are separate entry points. A Vercel middleware serves the authenticated one only with a valid session cookie.
-- **Lazy loading:** app uses `import()` and those chunks were restored. Boss has no lazy loading at all (one JS chunk), so its routes are imported directly, as in the original. Don't invent code-splitting the bundle doesn't show.
+- **Lazy loading:** app uses `import()` and those chunks were restored. Boss has no lazy loading at all (one JS chunk), so its routes are imported directly, as in the original. Don't invent code-splitting the bundle doesn't show. Ads is also a single chunk — no splitting.
+- **Ads** (`dashboard.ads.uysot.uz`): one JS chunk, no Sentry/source maps. Deminify with `wakaru` + `prettier` and map minified names by hand. API base was an inlined literal (`https://services.marketplace.uysot.uz`) — restored via `import.meta.env.VITE_API_BASE_URL` with that default. Backend is under `/api/dev/*`; auth is cookie-based (`withCredentials`), the user profile lives in `localStorage["user"]`, and the 401/403 interceptor clears `TOKEN`/`USER_NAME` (a quirk — the provider writes `user`). Pagination state is in the URL via `use-query-params`. Note the backend's `advetising` spelling — keep it.
 
 ## Required workflow (from the task specs)
 

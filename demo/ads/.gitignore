@@ -1,0 +1,6 @@
+node_modules
+dist
+# downloaded production build (reconstruction input), re-fetch with:
+# node ../../scripts/fetch-build.mjs https://dashboard.ads.uysot.uz/ _build
+_build/
+*.local
