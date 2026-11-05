@@ -14,7 +14,7 @@ Each `demo/<name>/task.md` is the full brief for one target (in Russian). The br
 |---|---|---|
 | `demo/app` | https://app.dev.uysot.uz/ | Public part restored (login/SMS/Telegram, password restore, QR pages, etc.). The main app behind login (`/main/*`) is **not** restored yet |
 | `demo/boss` | https://boss.app.uysot.uz/auth/login | Fully restored (the build is small: login, forbidden page, dashboard stub) |
-| `demo/admin` | https://admin.meninguyim.uysot.uz/login | Not started, only `task.md` |
+| `demo/admin` | https://admin.meninguyim.uysot.uz/login | Fully restored — the whole panel (19 pages: auth, dashboard, companies, brands, operators, partners, story, AI-design, eskiz, audit). ~150 source files |
 | `demo/ads` | https://dashboard.ads.uysot.uz/ | Not started, only `task.md` |
 | `demo/showroom` | https://showroom.app.uysot.uz/login | Not started, only `task.md` |
 
@@ -44,7 +44,8 @@ Both projects use the `@/` → `src/` alias (in `vite.config.ts` and `tsconfig.j
 
 ## Findings to reuse on the remaining targets
 
-- **Stack:** the briefs say "React.js, Next.js built with Vite", but both bundles examined so far are plain **Vite + React 18 + TypeScript SPAs with React Router 6, not Next.js**. Confirm this for each new target from its bundle.
+- **Stack:** the briefs say "React.js, Next.js built with Vite", but every bundle examined so far is a plain **Vite + React 18 + TypeScript SPA with React Router 6, not Next.js**. Confirm this for each new target from its bundle. `demo/admin` is **rolldown-vite** specifically.
+- **rolldown vs rollup chunking:** `app`/`boss` were rollup builds with vendors grouped into `vendor-*` chunks. `admin` is rolldown-vite, which **interleaves libraries with app code inside chunks** (no vendor chunks) — the app spine (routes, api client, store, theme, design system) is mixed into megachunks like `button-*` and must be carved out and the libs replaced with npm. Readable chunk filenames (`login-page`, `use-login-mutation`, …) are the main structural signal; `wakaru` + `prettier` de-minify each chunk well. See `demo/admin/RECONSTRUCTION.md`.
 - **Source maps:** none were found for app or boss. The servers fall back to `index.html` with HTTP 200 for any path, so a 200 on `*.map` means nothing until you check the body.
 - **Sentry** (app): the Sentry Vite plugin leaves `data-sentry-source-file` attributes in JSX. These give **exact original file paths**, so use them first when assigning code to files. The real source maps may be uploaded to Sentry; `demo/app/RECONSTRUCTION.md` has the project ID.
 - **Split builds** (app): the public shell (`apps/open.tsx`) and the authenticated app (`/assets/app-*.js`) are separate entry points. A Vercel middleware serves the authenticated one only with a valid session cookie.

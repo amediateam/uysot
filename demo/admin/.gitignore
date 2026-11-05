@@ -1,0 +1,6 @@
+node_modules
+dist
+# downloaded production build (reconstruction input), re-fetch with:
+# node ../../scripts/fetch-build.mjs https://admin.meninguyim.uysot.uz/login _build
+_build/
+*.local
